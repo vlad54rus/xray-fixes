@@ -1,11 +1,9 @@
-# xray-csky
-![Logo](https://i35.fastpic.org/big/2012/0323/46/ae7b8d2f5f0ad39d2db7fcbc48fbfc46.jpg "Logo")
+X-Ray Fixes
+==========================
+A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other projects. Source code based on ForserX's VS 2022 X-Ray port.
 
-Vanilla S.T.A.L.K.E.R. Clear Sky Engine:
-* Ported source code to VS 2022 17.2.2 (C++14/C++17 mode)
-* Removed STL Port dependence
-* Removed DXMath dependence into xrEngine 
-* DX10 use D3DCompiler library 
+## Fixes ported
+* Fixed controller roars persisting into loaded savegames. ([original commit](https://github.com/OpenXRay/xray-15/commit/3fec6f648c3a4de558a01a89cc4304ce95c4e920) by [Decane](https://github.com/Decane) for [OpenXRay 1.5](https://github.com/OpenXRay/xray-15))
 
-Problems:
-* HWCaps: disabled detecting AMD GPU count. X-Ray used old ATI library. Need implement by AMD Crossfire detect system. 
+## Known issues
+See: [FunXRay/xray-csky](https://github.com/FunXRay/xray-csky)'s readme.
