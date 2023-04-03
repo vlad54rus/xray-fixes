@@ -5,5 +5,8 @@ A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other proj
 ## Fixes ported
 * Fixed controller roars persisting into loaded savegames. ([original commit](https://github.com/OpenXRay/xray-15/commit/3fec6f648c3a4de558a01a89cc4304ce95c4e920) by [Decane](https://github.com/Decane) for [OpenXRay 1.5](https://github.com/OpenXRay/xray-15))
 
+## Installation
+Paste *bin* into the game's root directory, overwrite files.
+
 ## Known issues
 See: [FunXRay/xray-csky](https://github.com/FunXRay/xray-csky)'s readme.
