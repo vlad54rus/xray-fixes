@@ -23,8 +23,9 @@ A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other proj
 * Fixed controller roars persisting into loaded savegames. ([original commit](https://github.com/OpenXRay/xray-15/commit/3fec6f648c3a4de558a01a89cc4304ce95c4e920) by [Decane](https://github.com/Decane) for [OpenXRay 1.5](https://github.com/OpenXRay/xray-15))
 
 ### UI fixes
-* Fixed Shock protection being mislabeled as Strike in outfit immunities. ([original commit](https://github.com/ixray-team/ixray-1.5-stcs/commit/4372f70fa5d9e3c18c0ce1d848bf52063fbabdf0) by [Hrusteckiy](https://github.com/Hrusteckiy) for [IX-Ray 1.5](https://github.com/ixray-team/ixray-1.5-stcs))
+* Fixed Shock protection being mislabeled as Strike in outfit protection values. ([original commit](https://github.com/ixray-team/ixray-1.5-stcs/commit/4372f70fa5d9e3c18c0ce1d848bf52063fbabdf0) by [Hrusteckiy](https://github.com/Hrusteckiy) for [IX-Ray 1.5](https://github.com/ixray-team/ixray-1.5-stcs))
 * Fixed map spots for squads, quests, important NPCs and the player being stretched and occasionally misplaced on 16:9 aspect ratio. ([original commit](https://github.com/ixray-team/ixray-1.5-stcs/commit/7a5de7a6cd3cbfffa10b17dd6d778fd07bfba01c) by [Hrusteckiy](https://github.com/Hrusteckiy) for [IX-Ray 1.5](https://github.com/ixray-team/ixray-1.5-stcs))
+* Fixed outfit bullet resistance stat in outfit protection values always showing the percentage for fully repaired outfit even when it's not fully applied. ([original commit](https://github.com/ixray-team/ixray-1.5-stcs/commit/fad3b1c6ffd58135a58e03956abed6444c7a91d4) by [Hrusteckiy](https://github.com/Hrusteckiy) for [IX-Ray 1.5](https://github.com/ixray-team/ixray-1.5-stcs))
 
 ## Installation
 1. Paste *bin* into the game's root directory, overwrite files.
