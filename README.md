@@ -18,7 +18,8 @@ A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other proj
 * Fixed map spots for squads, quests, important NPCs and the player being stretched and occasionally misplaced on 16:9 aspect ratio. ([original commit](https://github.com/ixray-team/ixray-1.5-stcs/commit/7a5de7a6cd3cbfffa10b17dd6d778fd07bfba01c) by [Hrusteckiy](https://github.com/Hrusteckiy) for [IX-Ray 1.5](https://github.com/ixray-team/ixray-1.5-stcs))
 
 ## Installation
-Paste *bin* into the game's root directory, overwrite files.
+1. Paste *bin* into the game's root directory, overwrite files.
+2. Paste *gamedata* into the game's root directory, overwrite files.
 
 ## Known issues
 See: [FunXRay/xray-csky](https://github.com/FunXRay/xray-csky)'s readme.
