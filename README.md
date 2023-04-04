@@ -12,6 +12,9 @@ A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other proj
 
 ## Fixes ported
 
+### Crash fixes
+* Fixed a crash upon trying to drop an item from a container or enemy's inventory using G key. ([original commit](https://github.com/ixray-team/ixray-1.5-stcs/commit/157d9a49950a8c1d94ecff537bc3818aa8ad32e1) by [Hrusteckiy](https://github.com/Hrusteckiy) for [IX-Ray 1.5](https://github.com/ixray-team/ixray-1.5-stcs))
+
 ### Graphical fixes
 * Fixed visual artifacts occasionally occuring during the rain. ([original commit](https://github.com/OpenXRay/xray-15/commit/b8fd8b925c8593e75addd158deed327c0aff8d0b) by [Xottab_DUTY](https://github.com/Xottab-DUTY) for [OpenXRay 1.5](https://github.com/OpenXRay/xray-15/))
 * Fixed the sun not properly moving from west to east on dynamic lighting due to a mistake in the formula. ([original commit](https://github.com/abramcumner/xray15/commit/42737bfa3e8a3d3df9b927ce34ffa91a27a14faf) by [abramcumner](https://github.com/abramcumner/) for [abramcumner's X-Ray 1.5](https://github.com/abramcumner/xray15/))
