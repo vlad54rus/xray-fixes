@@ -388,7 +388,7 @@ void CUIActorMenu::OnBtnPerformTrade(CUIWindow* w, void* d)
 	actor_money        += delta_price;
 	partner_money      -= delta_price;
 
-	if ( ( actor_money >= 0 ) && ( partner_money >= 0 ) && ( actor_price >= 0 || partner_price > 0 ) )
+	if ( ( actor_money >= 0 ) && ( partner_money >= 0 || m_pPartnerInvOwner->InfinitiveMoney()) && ( actor_price >= 0 || partner_price > 0 ) )
 	{
 		m_partner_trade->OnPerformTrade( partner_price, actor_price );
 
