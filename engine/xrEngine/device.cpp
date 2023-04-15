@@ -274,7 +274,7 @@ void CRenderDevice::on_idle		()
 	// Matrices
 	mFullTransform.mul			( mProject,mView	);
 	m_pRender->SetCacheXform(mView, mProject);
-	mInvFullTransform.invert(mFullTransform);
+	mInvFullTransform.invert44(mFullTransform);
 	//D3DXMatrixInverse			( (D3DXMATRIX*)&mInvFullTransform, 0, (D3DXMATRIX*)&mFullTransform);
 
 	// *** Resume threads
