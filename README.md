@@ -17,6 +17,7 @@ A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other proj
 
 ### Gameplay fixes
 * Fixed inability to trade with NPCs that have supposedly infinite amount of money when the value of the sold items exceeded NPCs max money value. 
+* Fixed traders paying slightly more than expected for broken weapons and outfits due to the non-linearization of the formula being done after setting its limits instead of before, effectively changing the minimum value.
 
 ### Graphical fixes
 * Fixed visual artifacts occasionally occuring during the rain. ([original commit](https://github.com/OpenXRay/xray-15/commit/b8fd8b925c8593e75addd158deed327c0aff8d0b) by [Xottab_DUTY](https://github.com/Xottab-DUTY) for [OpenXRay 1.5](https://github.com/OpenXRay/xray-15/))
