@@ -216,6 +216,24 @@ public:
 		Self a;	a.set(*this);	invert(a);
 		return *this;
 	}
+	
+	IC	SelfRef	invert44(const Self& a)
+	{		
+		bool Result = invert44(reinterpret_cast<const float*>(a.m), reinterpret_cast<float*>(m));;
+		VERIFY(Result);
+		return *this;
+	}
+
+	IC	bool	invert44_b(const Self& a) 
+	{		
+		return  invert44(reinterpret_cast<const float*>( a.m), reinterpret_cast<float*>(m));;
+	}
+	IC	SelfRef	invert44()				
+	{
+		Self a;	a.set(*this);	invert44(a);
+		return *this;
+	}
+	
 	IC	SelfRef	transpose	(const Self &matSource)	// faster version of transpose
 	{
 		_11=matSource._11;	_12=matSource._21;	_13=matSource._31;	_14=matSource._41;
@@ -595,6 +613,135 @@ public:
 	IC	void	getXYZ	(Tvector& xyz) const{getXYZ(xyz.x,xyz.y,xyz.z);}
 	IC	void	getXYZi	(T& x, T& y, T& z) const{getHPB(y,x,z);x*=-1.f;y*=-1.f;z*=-1.f;}
 	IC	void	getXYZi	(Tvector& xyz) const{getXYZ(xyz.x,xyz.y,xyz.z);xyz.mul(-1.f);}
+	private:
+	
+	ICF bool	invert44(const float* In, float* Out)
+	{
+		float inv[16], det;
+		int i;
+
+		inv[0] = In[5] * In[10] * In[15] -
+			In[5] * In[11] * In[14] -
+			In[9] * In[6] * In[15] +
+			In[9] * In[7] * In[14] +
+			In[13] * In[6] * In[11] -
+			In[13] * In[7] * In[10];
+
+		inv[4] = -In[4] * In[10] * In[15] +
+			In[4] * In[11] * In[14] +
+			In[8] * In[6] * In[15] -
+			In[8] * In[7] * In[14] -
+			In[12] * In[6] * In[11] +
+			In[12] * In[7] * In[10];
+
+		inv[8] = In[4] * In[9] * In[15] -
+			In[4] * In[11] * In[13] -
+			In[8] * In[5] * In[15] +
+			In[8] * In[7] * In[13] +
+			In[12] * In[5] * In[11] -
+			In[12] * In[7] * In[9];
+
+		inv[12] = -In[4] * In[9] * In[14] +
+			In[4] * In[10] * In[13] +
+			In[8] * In[5] * In[14] -
+			In[8] * In[6] * In[13] -
+			In[12] * In[5] * In[10] +
+			In[12] * In[6] * In[9];
+
+		inv[1] = -In[1] * In[10] * In[15] +
+			In[1] * In[11] * In[14] +
+			In[9] * In[2] * In[15] -
+			In[9] * In[3] * In[14] -
+			In[13] * In[2] * In[11] +
+			In[13] * In[3] * In[10];
+
+		inv[5] = In[0] * In[10] * In[15] -
+			In[0] * In[11] * In[14] -
+			In[8] * In[2] * In[15] +
+			In[8] * In[3] * In[14] +
+			In[12] * In[2] * In[11] -
+			In[12] * In[3] * In[10];
+
+		inv[9] = -In[0] * In[9] * In[15] +
+			In[0] * In[11] * In[13] +
+			In[8] * In[1] * In[15] -
+			In[8] * In[3] * In[13] -
+			In[12] * In[1] * In[11] +
+			In[12] * In[3] * In[9];
+
+		inv[13] = In[0] * In[9] * In[14] -
+			In[0] * In[10] * In[13] -
+			In[8] * In[1] * In[14] +
+			In[8] * In[2] * In[13] +
+			In[12] * In[1] * In[10] -
+			In[12] * In[2] * In[9];
+
+		inv[2] = In[1] * In[6] * In[15] -
+			In[1] * In[7] * In[14] -
+			In[5] * In[2] * In[15] +
+			In[5] * In[3] * In[14] +
+			In[13] * In[2] * In[7] -
+			In[13] * In[3] * In[6];
+
+		inv[6] = -In[0] * In[6] * In[15] +
+			In[0] * In[7] * In[14] +
+			In[4] * In[2] * In[15] -
+			In[4] * In[3] * In[14] -
+			In[12] * In[2] * In[7] +
+			In[12] * In[3] * In[6];
+
+		inv[10] = In[0] * In[5] * In[15] -
+			In[0] * In[7] * In[13] -
+			In[4] * In[1] * In[15] +
+			In[4] * In[3] * In[13] +
+			In[12] * In[1] * In[7] -
+			In[12] * In[3] * In[5];
+
+		inv[14] = -In[0] * In[5] * In[14] +
+			In[0] * In[6] * In[13] +
+			In[4] * In[1] * In[14] -
+			In[4] * In[2] * In[13] -
+			In[12] * In[1] * In[6] +
+			In[12] * In[2] * In[5];
+
+		inv[3] = -In[1] * In[6] * In[11] +
+			In[1] * In[7] * In[10] +
+			In[5] * In[2] * In[11] -
+			In[5] * In[3] * In[10] -
+			In[9] * In[2] * In[7] +
+			In[9] * In[3] * In[6];
+
+		inv[7] = In[0] * In[6] * In[11] -
+			In[0] * In[7] * In[10] -
+			In[4] * In[2] * In[11] +
+			In[4] * In[3] * In[10] +
+			In[8] * In[2] * In[7] -
+			In[8] * In[3] * In[6];
+
+		inv[11] = -In[0] * In[5] * In[11] +
+			In[0] * In[7] * In[9] +
+			In[4] * In[1] * In[11] -
+			In[4] * In[3] * In[9] -
+			In[8] * In[1] * In[7] +
+			In[8] * In[3] * In[5];
+
+		inv[15] = In[0] * In[5] * In[10] -
+			In[0] * In[6] * In[9] -
+			In[4] * In[1] * In[10] +
+			In[4] * In[2] * In[9] +
+			In[8] * In[1] * In[6] -
+			In[8] * In[2] * In[5];
+
+		det = In[0] * inv[0] + In[1] * inv[4] + In[2] * inv[8] + In[3] * inv[12];
+
+		if (det == 0)
+			return false;
+
+		det = 1.0 / det;
+
+		for (i = 0; i < 16; i++)
+			Out[i] = inv[i] * det;
+		return true;
 };
 
 typedef		_matrix<float>	Fmatrix;
