@@ -39,7 +39,6 @@ A compilation of fixes for S.T.A.L.K.E.R. Clear Sky from multitude of other proj
 
 ## Installation
 1. Paste *bin* into the game's root directory, overwrite files.
-2. Paste *gamedata* into the game's root directory, overwrite files.
 
 ## Known issues
 See: [FunXRay/xray-csky](https://github.com/FunXRay/xray-csky)'s readme.
