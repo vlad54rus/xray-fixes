@@ -34,7 +34,7 @@ const int		dm_obj_in_slot		= 4;
 //const float		dm_fade				= float(2*dm_size)-.5f;
 const float		dm_slot_size		= DETAIL_SLOT_SIZE;
 
-//AVO: detail radius
+//KD: detail radius
 const u32		dm_max_cache_size = 62001; // assuming max dm_size = 124
 extern u32		dm_size;
 extern u32 		dm_cache1_line;
@@ -128,7 +128,7 @@ public:
 #ifndef _EDITOR    
 	xrXRC							xrc;
 #endif    
-	//AVO: detail draw raius
+	//KD: detail draw raius
 	//CacheSlot1 					cache_level1[dm_cache1_line][dm_cache1_line];
 	//Slot*							cache		[dm_cache_line][dm_cache_line];	// grid-cache itself
 	//svector<Slot*,dm_cache_size>	cache_task;									// non-unpacked slots

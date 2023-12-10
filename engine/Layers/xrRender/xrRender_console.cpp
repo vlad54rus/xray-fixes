@@ -199,9 +199,7 @@ float		ps_r3_dyn_wet_surf_near		= 10.f;				// 10.0f
 float		ps_r3_dyn_wet_surf_far		= 30.f;				// 30.0f
 int			ps_r3_dyn_wet_surf_sm_res	= 256;				// 256
 
-//AVO: detail draw radius
-Flags32		ps_common_flags = { 0 };		// r1-only
-u32			ps_steep_parallax = 0;
+//KD: detail draw radius
 int			ps_r__detail_radius = 49;
 // управление радиусом отрисовки травы
 u32			dm_size = 24;
@@ -215,15 +213,7 @@ u32			dm_current_cache_line = 49;	//dm_current_size+1+dm_current_size
 u32			dm_current_cache_size = 2401;	//dm_current_cache_line*dm_current_cache_line
 float		dm_current_fade = 47.5;	//float(2*dm_current_size)-.5f;
 float		ps_current_detail_density = 0.6;
-xr_token							ext_quality_token[] = {
-	{"qt_off", 0},
-	{"qt_low", 1},
-	{"qt_medium", 2},
-	{"qt_high", 3},
-	{"qt_extreme", 4},
-	{0, 0}
-};
-//-AVO
+//-KD
 
 //- Mad Max
 float		ps_r2_gloss_factor			= 3.0f;
@@ -236,7 +226,7 @@ float		ps_r2_gloss_factor			= 3.0f;
 #include "../xrRenderDX10/StateManager/dx10SamplerStateCache.h"
 #endif	//	USE_DX10
 
-//AVO: detail draw radius
+//KD: detail draw radius
 class CCC_detail_radius : public CCC_Integer
 {
 public:
@@ -260,7 +250,7 @@ public:
 		CCC_Integer::Status(S);
 	}
 };
-//-AVO
+//-KD
 
 //-----------------------------------------------------------------------
 class CCC_tf_Aniso		: public CCC_Integer
