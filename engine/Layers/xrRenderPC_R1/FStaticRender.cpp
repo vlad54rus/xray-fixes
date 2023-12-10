@@ -110,7 +110,14 @@ void					CRender::destroy				()
 
 void					CRender::reset_begin			()
 {
-	xr_delete					(Target);
+	//AVO: let's reload details while changed details options on vid_restart
+	if (b_loaded && ((dm_current_size != dm_size) || (ps_r__Detail_density != ps_current_detail_density)))
+	{
+		Details->Unload();
+		xr_delete(Details);
+	}
+	xr_delete(Target);
+	//-AVO
 //.	HWOCC.occq_destroy			();
 }
 
@@ -120,6 +127,13 @@ void					CRender::reset_end				()
 //.	HWOCC.occq_create			(occq_size);
 	Target						=	xr_new<CRenderTarget>	();
 	if (L_Projector)			L_Projector->invalidate		();
+
+	// let's reload details while changed details options on vid_restart
+	if (b_loaded && (dm_current_size != dm_size || ps_r__Detail_density != ps_current_detail_density))
+	{
+		Details = new CDetailManager();
+		Details->Load();
+	}
 }
 
 void					CRender::OnFrame				()
