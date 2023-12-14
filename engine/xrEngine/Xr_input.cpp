@@ -64,7 +64,7 @@ CInput::CInput						( BOOL bExclusive, int deviceForInit)
 	if (!pDI) CHK_DX(DirectInput8Create( GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&pDI, NULL ));
 
 //.	u32 kb_input_flags = ((bExclusive)?DISCL_EXCLUSIVE:DISCL_NONEXCLUSIVE) | DISCL_FOREGROUND;
-	u32 kb_input_flags = ((bExclusive)?DISCL_EXCLUSIVE:DISCL_NONEXCLUSIVE) | DISCL_FOREGROUND;
+	u32 kb_input_flags = DISCL_NONEXCLUSIVE | DISCL_FOREGROUND;
 	
 //.	u32 mouse_input_flags = ((bExclusive)?DISCL_EXCLUSIVE:DISCL_NONEXCLUSIVE) | DISCL_FOREGROUND | DISCL_NOWINKEY,
 	u32 mouse_input_flags = ((bExclusive)?DISCL_EXCLUSIVE:DISCL_NONEXCLUSIVE) | DISCL_FOREGROUND | DISCL_NOWINKEY;
@@ -490,8 +490,7 @@ void CInput::acquire				(const bool &exclusive)
 #ifdef INGAME_EDITOR
 		Device.editor() ? Device.editor()->main_handle() : 
 #endif // #ifdef INGAME_EDITOR
-		Device.m_hWnd,
-		(exclusive ? DISCL_EXCLUSIVE : DISCL_NONEXCLUSIVE) | DISCL_FOREGROUND
+		Device.m_hWnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND
 	);
 	pKeyboard->Acquire				();
 
