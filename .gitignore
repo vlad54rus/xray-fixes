@@ -7,3 +7,9 @@ engine/.vs/
 *.bak
 *.user
 *.htm
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/xray-fixes/v17/.wsuo
+.vs/xray-fixes/v17/Browse.VC.db
+.vs/xray-fixes/v17/workspaceFileList.bin
