@@ -238,7 +238,8 @@ void CAI_Bloodsucker::Load(LPCSTR section)
 
 	m_invisibility_activate_delay        = READ_IF_EXISTS(pSettings, r_u32, section, "invisibility_activate_delay",  
 										   default_invisibility_activate_delay);
-	
+
+	m_predator_invulnerable				 = READ_IF_EXISTS(pSettings, r_bool, section, "predator_invulnerable", true);
 }
 
 void CAI_Bloodsucker::reinit()
@@ -671,12 +672,15 @@ void CAI_Bloodsucker::HitEntity(const CEntity *pEntity, float fDamage, float imp
 
 bool CAI_Bloodsucker::in_solid_state ()
 {
-	return !state_invisible;
+	if ( m_predator_invulnerable )
+		return !state_invisible;
+
+		return true;
 }
 
 void CAI_Bloodsucker::Hit(SHit* pHDS)
 {
-	if ( state_invisible )
+	if ( state_invisible && m_predator_invulnerable)
 	{
 		return;
 	}
