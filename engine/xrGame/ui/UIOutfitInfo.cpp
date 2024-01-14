@@ -152,16 +152,16 @@ void CUIOutfitInfo::UpdateInfo( CCustomOutfit* cur_outfit, CCustomOutfit* slot_o
 		}
 		
 		ALife::EHitType hit_type = (ALife::EHitType)i;
-		float max_power = actor->conditions().GetZoneMaxPower( hit_type );
+		//float max_power = actor->conditions().GetZoneMaxPower( hit_type );
 
 		float cur = cur_outfit->GetDefHitTypeProtection( hit_type );
-		cur /= max_power; // = 0..1
+		//cur /= max_power; // = 0..1
 		float slot = cur;
 		
 		if ( slot_outfit )
 		{
 			slot = slot_outfit->GetDefHitTypeProtection( hit_type );
-			slot /= max_power; //  = 0..1
+			//slot /= max_power; //  = 0..1
 		}
 		m_items[i]->SetProgressValue( cur, slot );
 	}

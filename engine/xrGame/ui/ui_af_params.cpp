@@ -167,8 +167,8 @@ void CUIArtefactParams::SetInfo( shared_str const& af_section )
 		{
 			continue;
 		}
-		max_val = actor->conditions().GetZoneMaxPower( (ALife::EInfluenceType)i );
-		val /= max_val;
+		//max_val = actor->conditions().GetZoneMaxPower( (ALife::EInfluenceType)i );
+		//val /= max_val;
 		m_immunity_item[i]->SetValue( val );
 
 		pos.set( m_immunity_item[i]->GetWndPos() );

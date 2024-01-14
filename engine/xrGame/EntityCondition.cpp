@@ -308,14 +308,12 @@ float CEntityCondition::HitOutfitEffect( float hit_power, ALife::EHitType hit_ty
 	}
 	else
 	{
-		float one					= 0.1f;	// == void CRadioactiveZone::Affect(SZoneObjectInfo* O)
-		if ( hit_type == ALife::eHitTypeWound || hit_type == ALife::eHitTypeWound_2 || hit_type == ALife::eHitTypeExplosion )
+		float protect = pOutfit->GetHitTypeProtection(hit_type, element);
+		if (hit_type == ALife::eHitTypeTelepatic || hit_type == ALife::eHitTypeBurn || hit_type == ALife::eHitTypeChemicalBurn || hit_type == ALife::eHitTypeShock || hit_type == ALife::eHitTypeRadiation)
 		{
-			one = 1.0f;
+			new_hit_power -= protect * 0.015f;
 		}
-
-		float protect				= pOutfit->GetHitTypeProtection(hit_type,element);
-		new_hit_power				-= protect * one;
+		new_hit_power *= 1.0f - protect;
 		if( new_hit_power < 0.0f ) { new_hit_power = 0.0f; }
 		
 		//увеличить изношенность костюма
