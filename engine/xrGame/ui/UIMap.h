@@ -25,9 +25,10 @@ public:
 	virtual void	SetActivePoint					(const Fvector &vNewPoint);
 	
 	void			Initialize						(shared_str name, LPCSTR sh_name);
-	virtual Fvector2 ConvertRealToLocal				(const Fvector2& src);// meters->pixels (relatively own left-top pos)
+	virtual Fvector2 ConvertRealToLocal				(const Fvector2& src, bool for_drawing);// meters->pixels (relatively own left-top pos)
 	Fvector2		ConvertLocalToReal				(const Fvector2& src);
 	Fvector2		ConvertRealToLocalNoTransform	(const Fvector2& src);// meters->pixels (relatively own left-top pos)
+	Fvector2		ConvertRealToLocalNoTransform	(const Fvector2& src, Frect const& bound_rect);
 
 	bool			GetPointerTo					(const Fvector2& src, float item_radius, Fvector2& pos, float& heading);//position and heading for drawing pointer to src pos
 

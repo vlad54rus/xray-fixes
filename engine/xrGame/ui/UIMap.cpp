@@ -68,6 +68,9 @@ void CUICustomMap::Init_internal(const shared_str& name, CInifile& pLtx, const s
 	m_shader_name		= sh_name;
 	tmp					= pLtx.r_fvector4(sect_name,"bound_rect");
 
+	tmp.x *= UI()->get_current_kx();
+	tmp.z *= UI()->get_current_kx();
+
 	m_BoundRect.set			(tmp.x, tmp.y, tmp.z, tmp.w);
 	Fvector2 sz;
 	m_BoundRect.getsize		(sz);
@@ -79,12 +82,13 @@ void CUICustomMap::Init_internal(const shared_str& name, CInifile& pLtx, const s
 	ClipperOn				();
 }
 
-void rotation_(float x, float y, const float angle, float& x_, float& y_)
+void rotation_(float x, float y, const float angle, float& x_, float& y_, float _kx)
 {
 	float _sc = _cos(angle);
 	float _sn = _sin(angle);
 	x_= x*_sc+y*_sn;
 	y_= y*_sc-x*_sn;
+	x_ *= _kx;
 }
 
 Fvector2 CUICustomMap::ConvertLocalToReal(const Fvector2& src)
@@ -96,20 +100,33 @@ Fvector2 CUICustomMap::ConvertLocalToReal(const Fvector2& src)
 	return res;
 }
 
-Fvector2 CUICustomMap::ConvertRealToLocal  (const Fvector2& src)// meters->pixels (relatively own left-top pos)
+Fvector2 CUICustomMap::ConvertRealToLocal  (const Fvector2& src, bool for_drawing)// meters->pixels (relatively own left-top pos)
 {
 	Fvector2 res;
 	if( !Heading() ){
-		return ConvertRealToLocalNoTransform(src);
+		Frect bound_rect = BoundRect();
+		bound_rect.x1 /= UI()->get_current_kx();
+		bound_rect.x2 /= UI()->get_current_kx();
+		res = ConvertRealToLocalNoTransform(src, bound_rect);
+		res.x *= UI()->get_current_kx();
 	}else{
 		Fvector2 heading_pivot = GetStaticItem()->GetHeadingPivot();
 	
 		res = ConvertRealToLocalNoTransform(src);
 		res.sub(heading_pivot);
-		rotation_(res.x, res.y, GetHeading(), res.x, res.y);
+		rotation_(res.x, res.y, GetHeading(), res.x, res.y, for_drawing ? UI()->get_current_kx() : 1.0f);
 		res.add(heading_pivot);
-		return res;
 	};
+	return res;
+}
+
+Fvector2 CUICustomMap::ConvertRealToLocalNoTransform(const Fvector2& src, Frect const& bound_rect)// meters->pixels (relatively own left-top pos)
+{
+	Fvector2 res;
+	res.x = (src.x - bound_rect.lt.x) * GetCurrentZoom();
+	res.y = (bound_rect.height() - (src.y - bound_rect.lt.y)) * GetCurrentZoom();
+
+	return res;
 }
 
 Fvector2 CUICustomMap::ConvertRealToLocalNoTransform  (const Fvector2& src)// meters->pixels (relatively own left-top pos)
@@ -395,6 +412,8 @@ void CUILevelMap::Init_internal	(const shared_str& name, CInifile& pLtx, const s
 {
 	inherited::Init_internal(name, pLtx, sect_name, sh_name);
 	Fvector4 tmp			= pGameIni->r_fvector4(MapName(),"global_rect");
+	tmp.x *= UI()->get_current_kx();
+	tmp.z *= UI()->get_current_kx();
 	m_GlobalRect.set		(tmp.x, tmp.y, tmp.z, tmp.w);
 
 #ifdef DEBUG
