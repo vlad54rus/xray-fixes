@@ -68,8 +68,11 @@ void CUICustomMap::Init_internal(const shared_str& name, CInifile& pLtx, const s
 	m_shader_name		= sh_name;
 	tmp					= pLtx.r_fvector4(sect_name,"bound_rect");
 
-	tmp.x *= UI()->get_current_kx();
-	tmp.z *= UI()->get_current_kx();
+	if(!Heading())
+	{
+		tmp.x *= UI()->get_current_kx();
+		tmp.z *= UI()->get_current_kx();
+	}
 
 	m_BoundRect.set			(tmp.x, tmp.y, tmp.z, tmp.w);
 	Fvector2 sz;
