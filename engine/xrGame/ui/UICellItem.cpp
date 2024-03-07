@@ -172,7 +172,7 @@ CUIDragItem* CUICellItem::CreateDragItem()
 	{
 		float t1,t2;
 		t1				= r.width();
-		t2				= r.height();
+		t2				= r.height() * UI()->get_current_kx();
 
 		Fvector2 cp = GetUICursor()->GetCursorPosition();
 

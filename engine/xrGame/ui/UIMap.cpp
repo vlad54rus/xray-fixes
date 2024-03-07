@@ -91,7 +91,8 @@ void rotation_(float x, float y, const float angle, float& x_, float& y_, float 
 	float _sn = _sin(angle);
 	x_= x*_sc+y*_sn;
 	y_= y*_sc-x*_sn;
-	x_ *= _kx;
+	//x_ *= _kx;
+	if (UI()->is_16_9_mode()) x_ /= 1.2; //Пока будет так
 }
 
 Fvector2 CUICustomMap::ConvertLocalToReal(const Fvector2& src)
