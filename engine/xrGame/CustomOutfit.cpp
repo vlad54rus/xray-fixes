@@ -149,18 +149,20 @@ float CCustomOutfit::HitThroughArmor( float hit_power, s16 element, float ap, bo
 	if( ap > EPS && ap > BoneArmor )
 	{
 		//пуля пробила бронь
-		float d_ap = ap - BoneArmor;
-		NewHitPower *= ( d_ap / ap );
-
-		if ( NewHitPower < m_boneProtection->m_fHitFracActor )
+		float hit_fraction = (ap - BoneArmor) / (ap*0.5f);
+		if (hit_fraction > 1.0f)
 		{
-			NewHitPower = m_boneProtection->m_fHitFracActor;
+			hit_fraction = 1.0f;
+		}
+		if (hit_fraction < m_boneProtection->m_fHitFracActor )
+		{
+			hit_fraction = m_boneProtection->m_fHitFracActor;
 		}
 		if ( !IsGameTypeSingle() )
 		{
 			NewHitPower *= m_boneProtection->getBoneProtection(element);
 		}
-		
+		NewHitPower *= hit_fraction;
 		if ( NewHitPower < 0.0f ) { NewHitPower = 0.0f; }
 
 		//увеличить изношенность костюма
