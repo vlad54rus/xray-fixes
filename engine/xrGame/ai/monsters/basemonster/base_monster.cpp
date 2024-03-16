@@ -282,8 +282,33 @@ void	CBaseMonster::Hit							(SHit* pHDS)
 	if (g_Alive())
 		if (!critically_wounded()) 
 			update_critical_wounded(pHDS->boneID,pHDS->power);
-	
 
+	if (pHDS->hit_type == ALife::eHitTypeFireWound)
+	{
+		float& hit_power = pHDS->power;
+		float ap = pHDS->armor_piercing;
+		// пуля пробила шкуру
+		if (ap > EPS && ap > m_fSkinArmor)
+		{
+			float hit_fraction = (ap - m_fSkinArmor) / (ap*0.5f);
+			if (hit_fraction > 1.0f)
+			{
+				hit_fraction = 1.0f;
+			}
+			if (hit_fraction < m_fHitFracMonster)
+			{
+				hit_fraction = m_fHitFracMonster;
+			}
+			hit_power *= hit_fraction;
+			if (hit_power < 0.0f) {hit_power = 0.0f;}
+		}
+		// пуля НЕ пробила шкуру
+		else
+		{
+			hit_power *= m_fHitFracMonster;
+			pHDS->add_wound = false; 	//раны нет
+		}
+	}
 
 //	inherited::Hit(P,dir,who,element,p_in_object_space,impulse,hit_type);
 	inherited::Hit(pHDS);
