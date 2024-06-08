@@ -222,16 +222,13 @@ void CAI_Stalker::Hit			(SHit* pHDS)
 
 		if( ap > EPS && ap > BoneArmor )
 		{
-			float hit_fraction = (ap - BoneArmor) / (ap*0.5f);
-			if (hit_fraction > 1.0f)
+			float d_ap = ap - BoneArmor;
+			hit_power *= ( d_ap / ap );
+
+			if ( hit_power < m_boneHitProtection->m_fHitFrac )
 			{
-				hit_fraction = 1.0f;
+				hit_power = m_boneHitProtection->m_fHitFrac;
 			}
-			if (hit_fraction < m_boneHitProtection->m_fHitFrac)
-			{
-				hit_fraction = m_boneHitProtection->m_fHitFrac;
-			}
-			hit_power *= hit_fraction;
 			if ( hit_power < 0.0f )	{	hit_power = 0.0f;	}
 		}
 		else

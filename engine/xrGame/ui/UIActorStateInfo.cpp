@@ -118,8 +118,8 @@ void ui_actor_state_wnd::update_round_states( CActor* actor, ALife::EHitType hit
 	float value = (outfit)? outfit->GetDefHitTypeProtection( hit_type ) : 0.0f;
 	value += actor->GetProtection_ArtefactsOnBelt( hit_type );
 	
-	//float max_power = actor->conditions().GetZoneMaxPower( hit_type );
-	//value = value / max_power; //  = 0..1
+	float max_power = actor->conditions().GetZoneMaxPower( hit_type );
+	value = value / max_power; //  = 0..1
 	//	m_state[stt_type]->set_progress_shape( value );
 	m_state[stt_type]->set_arrow( value );//0..1
 	m_state[stt_type]->set_text( value );//0..1
